@@ -1,5 +1,5 @@
-from py_euclidea.constructions import *
-import py_euclidea.ConstructionProcess as construction
+from src.py_euclidea.constructions import *
+import src.py_euclidea.ConstructionProcess as construction
 
 
 def init(env):

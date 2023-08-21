@@ -65,7 +65,6 @@ class DetectorGeometry(utils.Dataset):
         scale = info['scale']
         corners = info['corners']
         history = self.get_history(image_id)
-
         return env_utils.build_image(geom_primitives, out_size, scale, corners, goal_objects, history)
 
     def get_history(self, image_id):

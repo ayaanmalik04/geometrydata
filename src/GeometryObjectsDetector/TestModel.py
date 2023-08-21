@@ -8,18 +8,18 @@ from collections import namedtuple
 
 import matplotlib.pyplot as plt
 from PIL import Image
-from LevelSelector import LevelSelector
+from src.LevelSelector import LevelSelector
 from collections import deque
 import pickle
 import matplotlib.pyplot as plt
-from mrcnn import visualize
-from GeometryObjectsDetector import DetectorGeometryDataset
-import GeometryObjectsDetector.DetectorGeometryConfig as gconfig
-import mrcnn.model as modellib
-from py_euclidea import multi_level
+from src.mrcnn import visualize
+from src.GeometryObjectsDetector import DetectorGeometryDataset
+import src.GeometryObjectsDetector.DetectorGeometryConfig as gconfig
+import src.mrcnn.model as modellib
+from src.py_euclidea import multi_level
 import numpy as np
-import enviroment_utils as env_utils
-from GeometryObjectsDetector.DetectorUtils import DetectorUtils
+import src.enviroment_utils as env_utils
+from src.GeometryObjectsDetector.DetectorUtils import DetectorUtils
 
 
 if __name__ == "__main__":

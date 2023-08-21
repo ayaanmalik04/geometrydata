@@ -58,6 +58,17 @@ class EnvironmentUtils:
             state.append(np.zeros(out_size))
         for i in history:
             state.append(i.copy())
+        for row in range(256):
+            for col in range(256):
+                if state[0][row][col] == 0 and state[1][row][col] == 0 and state[2][row][col] == 0:
+                    state[0][row][col] = 255
+                    state[1][row][col] = 255
+                    state[2][row][col] = 255
+                else:
+                    state[0][row][col] = 0
+                    state[1][row][col] = 0
+                    state[2][row][col] = 0
+
         return np.stack(state, axis=-1).astype(dtype=np.uint8)
 
     @staticmethod

@@ -124,7 +124,7 @@ class MultiLevel:
         #cr.set_source_rgb(1,1,1)
         #cr.stroke()
 
-        cr.set_source_rgb(1, 1, 1)
+        cr.set_source_rgb(0, 0, 0)
         #Point([10, 10]).draw(cr, self.corners, 1)
         for obj in objs:
             obj.draw(cr, self.corners, 1)
