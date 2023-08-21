@@ -58,8 +58,9 @@ class EnvironmentUtils:
             state.append(np.zeros(out_size))
         for i in history:
             state.append(i.copy())
-        for row in range(256):
-            for col in range(256):
+        # make it black and white
+        for row in range(out_size[0]):
+            for col in range(out_size[1]):
                 if state[0][row][col] == 0 and state[1][row][col] == 0 and state[2][row][col] == 0:
                     state[0][row][col] = 255
                     state[1][row][col] = 255
