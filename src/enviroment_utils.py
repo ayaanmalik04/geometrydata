@@ -50,8 +50,12 @@ class EnvironmentUtils:
 
     @staticmethod
     def build_image(geom_primitives, out_size, scale, corners, goal_objects, history, visualisation=False):
-        all_layer = EnvironmentUtils.objects_to_numpy(geom_primitives, out_size, scale, corners, visualisation=visualisation)
-        goal_layer = EnvironmentUtils.objects_to_numpy(goal_objects, out_size, scale, corners, visualisation=visualisation)
+        point_index = 0
+        all_layer = EnvironmentUtils.objects_to_numpy(geom_primitives, out_size, scale, corners, point_index, visualisation=visualisation)
+        for prim in geom_primitives:
+            if type(prim) is Point:
+                point_index += 1
+        goal_layer = EnvironmentUtils.objects_to_numpy(goal_objects, out_size, scale, corners, point_index, visualisation=visualisation)
 
         state = [all_layer, goal_layer]
         if len(history) == 0:
@@ -125,18 +129,21 @@ class EnvironmentUtils:
 
 
     @staticmethod
-    def objects_to_numpy(objs, out_size, scale, corners, visualisation=False):
+    def objects_to_numpy(objs, out_size, scale, corners, point_index=0, visualisation=False):
         width, height = out_size
         surface = cairo.ImageSurface(cairo.FORMAT_A8, width, height)
         cr = cairo.Context(surface)
         cr.scale(*(1 / scale))
 
         cr.set_source_rgb(1, 1, 1)
-
         for obj in objs:
             #interection tool produce empty objects sometimes: TODO repair intersection objects
             if obj is not None:
-                obj.draw(cr, corners, 1, visualisation)
+                if type(obj) is Point:
+                    point_index += 1
+                    obj.draw(cr, corners, 1, visualisation, point_index)
+                else:
+                    obj.draw(cr, corners, 1, visualisation)
 
         data = surface.get_data()
         data = np.array(data, dtype=np.uint8)

@@ -1,5 +1,7 @@
 import numpy as np
 from skimage import draw
+import cairo
+import string
 
 epsilon = 0.00001
 def eps_zero(npa):
@@ -64,7 +66,7 @@ class Point(GeoObject):
     def set_hidden(self, hidden):
         self.hidden = hidden
 
-    def draw(self, cr, corners, scale, visualisation=False):
+    def draw(self, cr, corners, scale, visualisation=False, point_index=0):
         #cr.arc(self.a[0], self.a[1], 10, 0, 2*np.pi)
         #cr.set_source_rgb(1,1,1)
         #cr.fill()
@@ -72,7 +74,16 @@ class Point(GeoObject):
         cr.arc(self.a[0], self.a[1], width/scale, 0, 2*np.pi)
         #cr.set_source_rgb(0,0,0)
         cr.fill()
+        if point_index > 0:
+            self.draw_label(cr, scale, point_index)
+    def draw_label(self, cr, scale, PointIndex):
 
+        ALPHABET = list(string.ascii_uppercase)
+        cr.set_source_rgb(0, 0, 0)  # Set color to black
+        cr.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+        cr.set_font_size(30)
+        cr.move_to(self.a[0] + 10 / scale, self.a[1])
+        cr.show_text(ALPHABET[PointIndex - 1])
     def scale(self, scale):
         self.a *= scale
     def shift(self, shift):
