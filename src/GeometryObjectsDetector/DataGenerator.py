@@ -65,7 +65,6 @@ def generate_geometry_episodes(args):
             d = s[:, :, [1, 2]]
             img = Image.fromarray(s[:, :, [1, 2, 3]]).show()
             raise Exception('Unfinished environment ' + levels[level_index][0] + "." + levels[level_index][1])
-
     data_gen_val.prepare()
     data_gen.prepare()
     print("data generation: done")

@@ -50,6 +50,8 @@ def display_images(images, titles=None, cols=4, cmap=None, norm=None,
         plt.subplot(rows, cols, i)
         plt.title(title, fontsize=9)
         plt.axis('off')
+        # plt.imshow(image.astype(np.uint8), cmap=cmap,
+        #            norm=norm, interpolation=interpolation)
         rotated_image = np.rot90(image.astype(np.uint8), k=1)  # Rotate the image 90 degrees clockwise
         inverted_image = np.flipud(rotated_image)  # Invert the image vertically
         plt.imshow(inverted_image, cmap=cmap,

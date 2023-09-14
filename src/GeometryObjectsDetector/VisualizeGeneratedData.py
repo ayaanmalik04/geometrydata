@@ -8,9 +8,9 @@ class Args:
         self.mask_size = 5
         self.history_size = 1
         self.generate_levels = ".*"
-        self.train_epochs = 1000
-        self.val_epochs = 100
-        self.visualize = 0
+        self.train_epochs = 2
+        self.val_epochs = 1
+        self.visualize = 1
 
 args = Args()
 
@@ -22,9 +22,10 @@ data_gen, data_gen_val = generate_geometry_episodes(args)
 
 for image_id in range(data_gen.last_id):
     image = data_gen.load_image(image_id)
+    masks, class_ids = data_gen.load_mask(image_id)
 
     # filename = os.path.join(output_folder, "image_{:04d}.png".format(image_id))C
     # image_pil = Image.fromarray(image)
     # image_pil.save(filename)
-
+    # visualize.display_top_masks(image, masks, class_ids, list(data_gen.id_name_dic.keys()))
     visualize.display_images([image])

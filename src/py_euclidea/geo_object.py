@@ -76,14 +76,14 @@ class Point(GeoObject):
         cr.fill()
         if point_index > 0:
             self.draw_label(cr, scale, point_index)
-    def draw_label(self, cr, scale, PointIndex):
+    def draw_label(self, cr, scale, point_index):
 
         ALPHABET = list(string.ascii_uppercase)
         cr.set_source_rgb(0, 0, 0)  # Set color to black
         cr.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
         cr.set_font_size(30)
         cr.move_to(self.a[0] + 10 / scale, self.a[1])
-        cr.show_text(ALPHABET[PointIndex - 1])
+        cr.show_text(ALPHABET[point_index - 1])
     def scale(self, scale):
         self.a *= scale
     def shift(self, shift):
